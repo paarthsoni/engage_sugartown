@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Login
+{% endblock title %}
+
+{% block link %}
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css">
+{% endblock link %}
+
+{% block body %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+  <strong> {{ message }}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<body>
+  <!--login part -->
+
+  <div class="wrapper" style="max-width:520px;">
+    <div class="title-text">
+      <div class="title login">
+        Login to SugarTown
+      </div>
+      <div class="title signup">
+        Signup to SugarTown
+      </div>
+    </div>
+    <div class="form-container">
+      <div class="slide-controls">
+        <input type="radio" name="slide" id="login" checked>
+        <input type="radio" name="slide" id="signup">
+        <label for="login" class="slide login">Login</label>
+        <label for="signup" class="slide signup">Signup</label>
+        <div class="slider-tab"></div>
+      </div>
+      <div class="form-inner">
+        <form action="/login/" method="post" class="login" name="loginform">
+          {% csrf_token %}
+          <div class="field">
+            <input type="text" placeholder="Username" name="username" required>
+          </div>
+          <div class="field">
+            <input type="password" placeholder="Password" name="password" required>
+          </div>
+          <div class="pass-link">
+            <a href="#">Forgot password?</a>
+          </div>
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" value="Login">
+          </div>
+          <div class="signup-link">
+            Not a member? <a href="">Signup now</a>
+          </div>
+        </form>
+        <form action="/register" method="post" class="signup" name="signupform">
+          {% csrf_token %}
+          <div class="field">
+            <input type="text" placeholder="Name" name="name" required>
+          </div>
+          <div class="field">
+            <input type="text" placeholder="Username" name="username" required>
+          </div>
+          <div class="field">
+            <input type="text" placeholder="Contact Number" name="contact" required>
+
+          </div>
+          <div class="field">
+            <input type="email" placeholder="Email Address" name="email" required>
+          </div>
+          <div class="field">
+            <input type="password" placeholder="Password" name="password" required>
+          </div>
+          <div class="field">
+            <input type="password" placeholder="Confirm password" name="cpassword" required>
+          </div>
+          <div class="signup-link">
+            Already a member? <a href="/login">Login now</a>
+          </div>
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" value="Signup">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script>
+    const loginText = document.querySelector(".title-text .login");
+    const loginForm = document.querySelector("form.login");
+    const loginBtn = document.querySelector("label.login");
+    const signupBtn = document.querySelector("label.signup");
+    const signupLink = document.querySelector("form .signup-link a");
+    signupBtn.onclick = (() => {
+      loginForm.style.marginLeft = "-50%";
+      loginText.style.marginLeft = "-50%";
+    });
+    loginBtn.onclick = (() => {
+      loginForm.style.marginLeft = "0%";
+      loginText.style.marginLeft = "0%";
+    });
+    signupLink.onclick = (() => {
+      signupBtn.click();
+      return false;
+    });
+  </script>
+
+
+
+</body>
+{% endblock body %}
