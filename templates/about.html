@@ -1,146 +1,21 @@
-<!DOCTYPE html>
-<html lang="zxx">
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}
+About
+{% endblock title %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Cake Template">
-    <meta name="keywords" content="Cake, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cake | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
-    <link rel="stylesheet" href="css/barfiller.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-</head>
+{% block body %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+    <strong> {{ message }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
 
-    <!-- Offcanvas Menu Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__cart">
-            <div class="offcanvas__cart__links">
-                <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                <a href="#"><img src="img/icon/heart.png" alt=""></a>
-            </div>
-            <div class="offcanvas__cart__item">
-                <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                <div class="cart__price">Cart: <span>$0.00</span></div>
-            </div>
-        </div>
-        <div class="offcanvas__logo">
-            <a href="./index.html"><img src="img/logo.png" alt=""></a>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__option">
-            <ul>
-                <li>USD <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li>EUR</li>
-                        <li>USD</li>
-                    </ul>
-                </li>
-                <li>ENG <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li>Spanish</li>
-                        <li>ENG</li>
-                    </ul>
-                </li>
-                <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
-            </ul>
-        </div>
-    </div>
-    <!-- Offcanvas Menu End -->
-
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="header__top__inner">
-                            <div class="header__top__left">
-                                <ul>
-                                    <li>USD <span class="arrow_carrot-down"></span>
-                                        <ul>
-                                            <li>EUR</li>
-                                            <li>USD</li>
-                                        </ul>
-                                    </li>
-                                    <li>ENG <span class="arrow_carrot-down"></span>
-                                        <ul>
-                                            <li>Spanish</li>
-                                            <li>ENG</li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
-                                </ul>
-                            </div>
-                            <div class="header__logo">
-                                <a href="./index.html"><img src="img/logo.png" alt=""></a>
-                            </div>
-                            <div class="header__top__right">
-                                <div class="header__top__right__links">
-                                    <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                                    <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                                </div>
-                                <div class="header__top__right__cart">
-                                    <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                                    <div class="cart__price">Cart: <span>$0.00</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="canvas__open"><i class="fa fa-bars"></i></div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <nav class="header__menu mobile-menu">
-                        <ul>
-                            <li><a href="./index.html">Home</a></li>
-                            <li class="active"><a href="./about.html">About</a></li>
-                            <li><a href="./shop.html">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./wisslist.html">Wisslist</a></li>
-                                    <li><a href="./Class.html">Class</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- Header Section End -->
 
     <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
@@ -153,7 +28,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Home</a>
+                        <a href="/">Home</a>
                         <span>About</span>
                     </div>
                 </div>
@@ -167,9 +42,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="about__video set-bg" data-setbg="img/about-video.jpg">
+                    <div class="about__video set-bg" data-setbg="{% static 'img/class-video.jpg'%}">
                         <a href="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1"
-                        class="play-btn video-popup"><i class="fa fa-play"></i></a>
+                            class="play-btn video-popup"><i class="fa fa-play"></i></a>
                     </div>
                 </div>
             </div>
@@ -177,11 +52,11 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="about__text">
                         <div class="section-title">
-                            <span>About Cake shop</span>
+                            <span>About Sugar Town</span>
                             <h2>Cakes and bakes from the house of Queens!</h2>
                         </div>
-                        <p>The "Cake Shop" is a Jordanian Brand that started as a small family business. The owners are
-                        Dr. Iyad Sultan and Dr. Sereen Sharabati, supported by a staff of 80 employees.</p>
+                        <p>The "Sugar Town" is a Indian Brand that started as a small family business. The owners are
+                            Mr. Paarth Soni and Mr. Prinkesh Soni, supported by a staff of 50 employees.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -230,12 +105,12 @@
                     <div class="col-lg-6">
                         <div class="testimonial__item">
                             <div class="testimonial__author">
-                                <div class="testimonial__author__pic">
-                                    <img src="img/testimonial/ta-1.jpg" alt="">
-                                </div>
+                                <!-- <div class="testimonial__author__pic">
+                                    <img src="{% static 'img/testimonial/ta-1.jpg'%}" alt="">
+                                </div> -->
                                 <div class="testimonial__author__text">
-                                    <h5>Kerry D.Silva</h5>
-                                    <span>New york</span>
+                                    <h5>Apurva Gandhi</h5>
+                                    <span>Mumbai</span>
                                 </div>
                             </div>
                             <div class="rating">
@@ -245,19 +120,20 @@
                                 <span class="icon_star"></span>
                                 <span class="icon_star-half_alt"></span>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                            <p>I ordered the Gulab Jamun Cake. It was delicious.
+
+                                Thank you Sugar Town!</p>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="testimonial__item">
                             <div class="testimonial__author">
-                                <div class="testimonial__author__pic">
-                                    <img src="img/testimonial/ta-2.jpg" alt="">
-                                </div>
+                                <!-- <div class="testimonial__author__pic">
+                                    <img src="{% static 'img/testimonial/ta-2.jpg'%}" alt="">
+                                </div> -->
                                 <div class="testimonial__author__text">
-                                    <h5>Kerry D.Silva</h5>
-                                    <span>New york</span>
+                                    <h5>Pranav Rastogi</h5>
+                                    <span>Banglore</span>
                                 </div>
                             </div>
                             <div class="rating">
@@ -267,19 +143,19 @@
                                 <span class="icon_star"></span>
                                 <span class="icon_star-half_alt"></span>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                            <p>Thank you for a delicious cake! You made my son's 18th Birthday! Thank you for making our
+                                day extra special!!.</p>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="testimonial__item">
                             <div class="testimonial__author">
-                                <div class="testimonial__author__pic">
-                                    <img src="img/testimonial/ta-1.jpg" alt="">
-                                </div>
+                                <!-- <div class="testimonial__author__pic">
+                                    <img src="{% static 'img/testimonial/ta-1.jpg'%}" alt="">
+                                </div> -->
                                 <div class="testimonial__author__text">
-                                    <h5>Ophelia Nunez</h5>
-                                    <span>London</span>
+                                    <h5>Rupa shah</h5>
+                                    <span>Delhi</span>
                                 </div>
                             </div>
                             <div class="rating">
@@ -289,19 +165,18 @@
                                 <span class="icon_star"></span>
                                 <span class="icon_star-half_alt"></span>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                            <p> We loved our wedding cake so much & wanted to say, thank you very much! Perfect.</p>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="testimonial__item">
                             <div class="testimonial__author">
-                                <div class="testimonial__author__pic">
-                                    <img src="img/testimonial/ta-2.jpg" alt="">
-                                </div>
+                                <!-- <div class="testimonial__author__pic">
+                                    <img src="{% static 'img/testimonial/ta-2.jpg'%}" alt="">
+                                </div> -->
                                 <div class="testimonial__author__text">
-                                    <h5>Kerry D.Silva</h5>
-                                    <span>New york</span>
+                                    <h5>Ashish Mistry</h5>
+                                    <span>Ahmedabad</span>
                                 </div>
                             </div>
                             <div class="rating">
@@ -311,19 +186,19 @@
                                 <span class="icon_star"></span>
                                 <span class="icon_star-half_alt"></span>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                            <p>Your Cake was fabulous! Every piece was savored. Wish we ordered more... Thanks for
+                                delivering all the way up to Ghost Ranch . We appreciate your service.</p>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="testimonial__item">
                             <div class="testimonial__author">
-                                <div class="testimonial__author__pic">
-                                    <img src="img/testimonial/ta-1.jpg" alt="">
-                                </div>
+                                <!-- <div class="testimonial__author__pic">
+                                    <img src="{% static 'img/testimonial/ta-1.jpg'%}" alt="">
+                                </div> -->
                                 <div class="testimonial__author__text">
-                                    <h5>Ophelia Nunez</h5>
-                                    <span>London</span>
+                                    <h5>Sneha Patel</h5>
+                                    <span>Mumbai</span>
                                 </div>
                             </div>
                             <div class="rating">
@@ -333,19 +208,20 @@
                                 <span class="icon_star"></span>
                                 <span class="icon_star-half_alt"></span>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                            <p> Just a quick note to let you know how much we appreciate all your attention when helping
+                                pick out our cake. It turned out perfectly,was delivered as promised and tasted great
+                                too! Thank you & all the staff.</p>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="testimonial__item">
                             <div class="testimonial__author">
-                                <div class="testimonial__author__pic">
-                                    <img src="img/testimonial/ta-2.jpg" alt="">
-                                </div>
+                                <!-- <div class="testimonial__author__pic">
+                                    <img src="{% static 'img/testimonial/ta-2.jpg'%}" alt="">
+                                </div> -->
                                 <div class="testimonial__author__text">
-                                    <h5>Kerry D.Silva</h5>
-                                    <span>New york</span>
+                                    <h5>Mehul Makwana</h5>
+                                    <span>Mumbai</span>
                                 </div>
                             </div>
                             <div class="rating">
@@ -355,8 +231,9 @@
                                 <span class="icon_star"></span>
                                 <span class="icon_star-half_alt"></span>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                            <p>We can't thank you enough for doing such wonderful work on our wedding cake. Everything
+                                was
+                                beautiful and tasted wonderful. Thank you for all the time, care and effort.</p>
                         </div>
                     </div>
                 </div>
@@ -375,15 +252,15 @@
                         <h2>Sweet Baker </h2>
                     </div>
                 </div>
-                <div class="col-lg-5 col-md-5 col-sm-5">
+                <!-- <div class="col-lg-5 col-md-5 col-sm-5">
                     <div class="team__btn">
                         <a href="#" class="primary-btn">Join Us</a>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="row">
-                <div class="col-lg-3  col-md-6 col-sm-6">
-                    <div class="team__item set-bg" data-setbg="img/team/team-1.jpg">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item set-bg" data-setbg="{% static 'img/team/team-1.jpg'%}">
                         <div class="team__item__text">
                             <h6>Randy Butler</h6>
                             <span>Decorater</span>
@@ -396,10 +273,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3  col-md-6 col-sm-6">
-                    <div class="team__item set-bg" data-setbg="img/team/team-2.jpg">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item set-bg" data-setbg="{% static 'img/team/team-2.jpg'%}">
                         <div class="team__item__text">
-                            <h6>Randy Butler</h6>
+                            <h6>Maria D'Souza</h6>
+                            <span>Baker</span>
+                            <div class="team__item__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item set-bg" data-setbg="{% static 'img/team/team-3.jpg'%}">
+                        <div class="team__item__text">
+                            <h6>Joe King</h6>
                             <span>Decorater</span>
                             <div class="team__item__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
@@ -410,25 +301,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3  col-md-6 col-sm-6">
-                    <div class="team__item set-bg" data-setbg="img/team/team-3.jpg">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item set-bg" data-setbg="{% static 'img/team/team-4.jpg'%}">
                         <div class="team__item__text">
-                            <h6>Randy Butler</h6>
-                            <span>Decorater</span>
-                            <div class="team__item__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3  col-md-6 col-sm-6">
-                    <div class="team__item set-bg" data-setbg="img/team/team-4.jpg">
-                        <div class="team__item__text">
-                            <h6>Randy Butler</h6>
-                            <span>Decorater</span>
+                            <h6>Harry Styles</h6>
+                            <span>Baker</span>
                             <div class="team__item__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -443,92 +320,7 @@
     </section>
     <!-- Team Section End -->
 
-    <!-- Footer Section Begin -->
-    <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>WORKING HOURS</h6>
-                        <ul>
-                            <li>Monday - Friday: 08:00 am – 08:30 pm</li>
-                            <li>Saturday: 10:00 am – 16:30 pm</li>
-                            <li>Sunday: 10:00 am – 16:30 pm</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__logo">
-                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
-                        </div>
-                        <p>Lorem ipsum dolor amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore dolore magna aliqua.</p>
-                        <div class="footer__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="footer__newslatter">
-                        <h6>Subscribe</h6>
-                        <p>Get latest updates and offers.</p>
-                        <form action="#">
-                            <input type="text" placeholder="Email">
-                            <button type="submit"><i class="fa fa-send-o"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <p class="copyright__text text-white"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                      </p>
-                  </div>
-                  <div class="col-lg-5">
-                    <div class="copyright__widget">
-                        <ul>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Site Map</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- Footer Section End -->
 
-<!-- Search Begin -->
-<div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
-        </form>
-    </div>
-</div>
-<!-- Search End -->
-
-<!-- Js Plugins -->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
-<script src="js/jquery.barfiller.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/jquery.slicknav.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.nicescroll.min.js"></script>
-<script src="js/main.js"></script>
 </body>
 
-</html>
+{% endblock body%}

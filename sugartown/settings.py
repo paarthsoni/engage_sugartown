@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-
+from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'sugartown.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd2ckj044v0oeba',
-        'USER': 'kkyvlrurojazqn',
-        'PASSWORD': '703ca3581dbeed48fe1a540b28daba13dfd4689332e272487fce016ffa775c46',
-        'HOST': 'ec2-54-164-40-66.compute-1.amazonaws.com',
+        'NAME': 'd4rlosna0fhqc6',
+        'USER': 'grrylmrukmqfwz',
+        'PASSWORD': '92d2a169458bafd3cb69456ca03c2df7f23fac9ad5045738a6b315cda4fc8b3b',
+        'HOST': 'ec2-3-229-11-55.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }

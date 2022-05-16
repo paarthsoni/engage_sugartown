@@ -96,7 +96,7 @@ class FaceRecognition:
         print("\n {0} faces trained. Exiting Program".format(
             len(np.unique(ids))))
 
-    def recognizeFace(self, face):
+    def recognizeFace(self):
         recognizer.read(str(BASE_DIR)+'/sugartownapp/trainer/trainer.yml')
         cascadePath = str(BASE_DIR) + \
             '/sugartownapp/haarcascade_frontalface_default.xml'
@@ -153,11 +153,8 @@ class FaceRecognition:
             if confidence > 50:
                 break
 
-        print("\n Exiting Program")
+        # print("\n Exiting Program")
         cam.release()
         cv2.destroyAllWindows()
-        if face == face_id:
-            face_num = face_id
-        else:
-            face_num = -1
-        return face_num
+
+        return face_id

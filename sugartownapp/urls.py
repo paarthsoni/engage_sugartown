@@ -16,7 +16,13 @@ urlpatterns = [
     path("login/", views.loginuser, name="loginuser"),
     path("register", views.registeruser, name="registeruser"),
     path("logout", views.logoutUser, name="logoutuser"),
-    # path("facecapture", views.registerfacecapture, name="facecapture"),
+    path("requirements/", views.userrequirements_data, name="requirementsuser"),
+    path("latestoffers/", views.latestoffers_user_email_data,
+         name="latestoffersuser"),
+    path("about/", views.about, name="about"),
+    path("contact/", views.contact, name="contact"),
+    path("contact/submit/", views.contact, name="contactsubmit"),
+
 
 
 ]
