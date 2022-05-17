@@ -36,8 +36,6 @@ Home
     </div>
     <!-- Breadcrumb End -->
 
-
-
     <!-- Shop Section Begin -->
     <section class="shop spad">
         <div class="container">
@@ -47,11 +45,9 @@ Home
                         <div class="shop__option__search">
                             <form action="/shop/products/" method="post" name="productform">
                                 {% csrf_token %}
-                                <input type="text" placeholder="Search by keyword (eg: Cupcake)" id="searchbar"
-                                    name="producttype">
+                                <input type="text" placeholder="Search by keyword (eg: Cupcake)" name="producttype">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
-
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-5">
@@ -71,14 +67,15 @@ Home
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/product-1.jpg' %}">
+                        <div class="product__item__pic set-bg"
+                            data-setbg="{% static 'img/shop/Chocolate-Truffle-Gateaux.jpg'%}">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Cakes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Butterscotch</a></h6>
-                            <div class="product__item__price">₹100.00</div>
+                            <h6><a href="#">CHOCOLATE TRUFFLE</a></h6>
+                            <div class="product__item__price">₹400.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
                                 <a href="#">Add to cart</a>
@@ -91,14 +88,15 @@ Home
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg=" {% static 'img/shop/product-2.jpg' %}">
+                        <div class="product__item__pic set-bg"
+                            data-setbg="{% static 'img/shop/Spellbinding-Red-Velvet-Cake.jpg'%}">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Cakes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Cookies and Cream</a></h6>
-                            <div class="product__item__price">₹150.00</div>
+                            <h6><a href="#">RED VELVET</a></h6>
+                            <div class="product__item__price">₹500.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
                                 <a href="#">Add to cart</a>
@@ -111,14 +109,14 @@ Home
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/product-3.jpg' %}">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/gulabjamun.jpg'%}">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Cakes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Gluten Free Mini Dozen</a></h6>
-                            <div class="product__item__price">₹120.00</div>
+                            <h6><a href="#">Gulab jamun</a></h6>
+                            <div class="product__item__price">₹550.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
                                 <a href="#">Add to cart</a>
@@ -131,14 +129,15 @@ Home
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/product-4.jpg' %}">
+                        <div class="product__item__pic set-bg"
+                            data-setbg="{% static 'img/shop/StrawberryCake_1_.jpg'%}">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Cakes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Sweet Rainbow</a></h6>
-                            <div class="product__item__price">₹170.00</div>
+                            <h6><a href="#">Strwaberry Delicacy</a></h6>
+                            <div class="product__item__price">₹600.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
                                 <a href="#">Add to cart</a>
@@ -151,14 +150,14 @@ Home
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/product-5.jpg' %}">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/blackforest.jpg'%}">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Cakes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Vanilla Salted Caramel</a></h6>
-                            <div class="product__item__price">₹170.00</div>
+                            <h6><a href="#">Black Forest</a></h6>
+                            <div class="product__item__price">₹450.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
                                 <a href="#">Add to cart</a>
@@ -171,14 +170,15 @@ Home
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/product-6.jpg' %}">
+                        <div class="product__item__pic set-bg"
+                            data-setbg="{% static 'img/shop/GermanChocolateCake.jpg'%}">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Cakes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">German Chocolate</a></h6>
-                            <div class="product__item__price">₹150.00</div>
+                            <div class="product__item__price">₹550.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
                                 <a href="#">Add to cart</a>
@@ -191,14 +191,14 @@ Home
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/product-7.jpg' %}">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/dutch.jpg'%}">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Cakes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Dulce De Leche</a></h6>
-                            <div class="product__item__price">₹200.00</div>
+                            <h6><a href="#">Dutch Chocolate</a></h6>
+                            <div class="product__item__price">₹600.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
                                 <a href="#">Add to cart</a>
@@ -211,14 +211,14 @@ Home
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/product-8.jpg' %}">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/pineapple.jpg'%}">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Cakes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Mississippi Mud</a></h6>
-                            <div class="product__item__price">₹180.00</div>
+                            <h6><a href="#">Pineapple Cake</a></h6>
+                            <div class="product__item__price">₹500.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
                                 <a href="#">Add to cart</a>
@@ -229,16 +229,16 @@ Home
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <!-- <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/product-9.jpg' %}">
+                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-9.jpg">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Cakes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">VEGAN/GLUTEN FREE</a></h6>
-                            <div class="product__item__price">₹130.00</div>
+                            <div class="product__item__price">$98.85</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
                                 <a href="#">Add to cart</a>
@@ -251,14 +251,14 @@ Home
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/product-10.jpg' %}">
+                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-10.jpg">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Cakes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">SWEET CELTICS</a></h6>
-                            <div class="product__item__price">₹190.00</div>
+                            <div class="product__item__price">$5.77</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
                                 <a href="#">Add to cart</a>
@@ -271,14 +271,14 @@ Home
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/product-11.jpg' %}">
+                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-11.jpg">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Cakes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">SWEET AUTUMN LEAVES</a></h6>
-                            <div class="product__item__price">₹210.00</div>
+                            <div class="product__item__price">$26.41</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
                                 <a href="#">Add to cart</a>
@@ -291,14 +291,14 @@ Home
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/product-12.jpg' %}">
+                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-12.jpg">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Cakes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">PALE YELLOW SWEET</a></h6>
-                            <div class="product__item__price">₹140.00</div>
+                            <div class="product__item__price">$22.47</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
                                 <a href="#">Add to cart</a>
@@ -309,28 +309,29 @@ Home
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="shop__last__option">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="shop__pagination">
-                            <a href="/shop/">1</a>
-                            <a href="/shop/products/Cakes">2</a>
-                            <a href="/shop/products/Chocolates">3</a>
-                            <a href="/shop/products/Cookies">4</a>
-                            <a href="/shop/products/Donuts">5</a>
-                            <a href="/shop/products/icecreams">6</a>
+            </div> -->
+                <div class="shop__last__option">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="shop__pagination">
+                                <a href="/shop/">1</a>
+                                <a href="/shop/products/Cakes">2</a>
+                                <a href="/shop/products/Chocolates">3</a>
+                                <a href="/shop/products/Cookies">4</a>
+                                <a href="/shop/products/Donuts">5</a>
+                                <a href="/shop/products/icecreams">6</a>
 
+
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <!-- <div class="shop__last__text">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <!-- <div class="shop__last__text">
                             <p>Showing 1-9 of 10 results</p>
                         </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     <!-- Shop Section End -->
 

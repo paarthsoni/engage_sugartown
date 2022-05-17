@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}
+Home
+{% endblock title %}
+
+{% block body %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+    <strong> {{ message }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<body>
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="breadcrumb__text">
+                        <h2>Shop</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <span>Shop</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Shop Section Begin -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="shop__option">
+                <div class="row">
+                    <div class="col-lg-7 col-md-7">
+                        <div class="shop__option__search">
+                            <form action="/shop/products/" method="post" name="productform">
+                                {% csrf_token %}
+                                <input type="text" placeholder="Search by keyword (eg: Cupcake)" name="producttype">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5">
+                        <!-- <div class="shop__option__right">
+                            <select>
+                                <option value="">Default sorting</option>
+                                <option value="">A to Z</option>
+                                <option value="">1 - 8</option>
+                                <option value="">Name</option>
+                            </select>
+                            <a href="#"><i class="fa fa-list"></i></a>
+                            <a href="#"><i class="fa fa-reorder"></i></a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/chip.jpg'%}">
+                            <div class="product__label">
+                                <span>Cookies</span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Choco Chips Cookies</a></h6>
+                            <div class="product__item__price">₹500.00/kg</div>
+                            <div class="cart_add">
+                                {% if request.user.is_authenticated %}
+                                <a href="#">Add to cart</a>
+                                {% else %}
+                                <a href="/login"> Add to cart</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/almond.jpg'%}">
+                            <div class="product__label">
+                                <span>Cookies</span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Almond Cookies</a></h6>
+                            <div class="product__item__price">₹400.00/kg</div>
+                            <div class="cart_add">
+                                {% if request.user.is_authenticated %}
+                                <a href="#">Add to cart</a>
+                                {% else %}
+                                <a href="/login"> Add to cart</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/blackcurrent.jpg'%}">
+                            <div class="product__label">
+                                <span>Cookies</span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Black Current Cookies</a></h6>
+                            <div class="product__item__price">₹450.00/kg</div>
+                            <div class="cart_add">
+                                {% if request.user.is_authenticated %}
+                                <a href="#">Add to cart</a>
+                                {% else %}
+                                <a href="/login"> Add to cart</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/walnut.jpg'%}">
+                            <div class="product__label">
+                                <span>Cookies</span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Walnut Cookies</a></h6>
+                            <div class="product__item__price">₹600.00/kg</div>
+                            <div class="cart_add">
+                                {% if request.user.is_authenticated %}
+                                <a href="#">Add to cart</a>
+                                {% else %}
+                                <a href="/login"> Add to cart</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/cashew.jpg'%}">
+                            <div class="product__label">
+                                <span>Cookies</span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Cashew Cookies</a></h6>
+                            <div class="product__item__price">₹550.00/kg</div>
+                            <div class="cart_add">
+                                {% if request.user.is_authenticated %}
+                                <a href="#">Add to cart</a>
+                                {% else %}
+                                <a href="/login"> Add to cart</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/shop/chocolate.jpg'%}">
+                            <div class="product__label">
+                                <span>Cookies</span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Chocolate Cookies</a></h6>
+                            <div class="product__item__price">₹500.00/kg</div>
+                            <div class="cart_add">
+                                {% if request.user.is_authenticated %}
+                                <a href="#">Add to cart</a>
+                                {% else %}
+                                <a href="/login"> Add to cart</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shop__last__option">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="shop__pagination">
+                                <a href="/shop/">1</a>
+                                <a href="/shop/products/Cakes">2</a>
+                                <a href="/shop/products/Chocolates">3</a>
+                                <a href="/shop/products/Cookies">4</a>
+                                <a href="/shop/products/Donuts">5</a>
+                                <a href="/shop/products/icecreams">6</a>
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <!-- <div class="shop__last__text">
+                            <p>Showing 1-9 of 10 results</p>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- Shop Section End -->
+
+
+</body>
+
+{% endblock body %}

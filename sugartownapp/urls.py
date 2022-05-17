@@ -22,6 +22,21 @@ urlpatterns = [
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
     path("contact/submit/", views.contact, name="contactsubmit"),
+    path("blog/", views.blog, name="blog"),
+    path("blog/newsletter/", views.blog, name="blognewsletter"),
+    path("account/", views.account, name="account"),
+    path("shop/", views.shop, name="shop"),
+    path("shop/products/", views.shop_products, name="shop-products"),
+    path("shop/products/Cakes", views.shop_products_cakes, name="shop-products"),
+    path("shop/products/Chocolates",
+         views.shop_products_chocolates, name="shop-products"),
+    path("shop/products/Cookies",
+         views.shop_products_cookies, name="shop-products"),
+    path("shop/products/Donuts",
+         views.shop_products_donuts, name="shop-products"),
+    path("shop/products/icecreams",
+         views.shop_products_icecreams, name="shop-products"),
+
 
 
 

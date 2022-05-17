@@ -14,7 +14,7 @@ from sympy import re
 from sugartownapp.detection import FaceRecognition
 
 
-from sugartownapp.models import UserProfile, userfaceid, userrequirements, latestoffers_user, user_contactinfo
+from sugartownapp.models import UserProfile, userfaceid, userrequirements, latestoffers_user, user_contactinfo, newsletter_user
 import cv2
 from django.core.files import File
 
@@ -215,3 +215,74 @@ def contact(request):
             return redirect('/contact/')
 
     return render(request, 'contact.html')
+
+
+def blog(request):
+    if request.method == "POST":
+        username = get_user(request)
+        email = request.POST.get('email')
+        email_exists = False
+
+        if newsletter_user.objects.filter(email=email).exists():
+            email_exists = True
+
+        if email_exists == False:
+            userinfo = newsletter_user(username=username, email=email)
+            userinfo.save()
+            messages.success(
+                request, "Email Registered For Sugar Town Newsletter Successfully!")
+            return redirect('/blog')
+        elif email_exists == True:
+            messages.warning(
+                request, "Sorry!! This Email is already registered with us for Sugar Town Newletters")
+            return redirect('/blog/')
+    return render(request, 'blog.html')
+
+
+def account(request):
+    return render(request, 'account.html')
+
+
+def shop(request):
+    return render(request, 'shop.html')
+
+
+def shop_products(request):
+    if request.method == "POST":
+        type_product_value = request.POST.get('producttype')
+        if type_product_value == "Cupcake" or type_product_value == "cupcake" or type_product_value == "cupCake":
+            return redirect('/shop/')
+        elif type_product_value == "Cake" or type_product_value == "Cakes" or type_product_value == "cake" or type_product_value == "cakes":
+            return redirect('/shop/products/Cakes')
+        elif type_product_value == "Chocolate" or type_product_value == "Chocolates" or type_product_value == "chocolate" or type_product_value == "chocolates":
+            return redirect('/shop/products/Chocolates')
+        elif type_product_value == "Cookies" or type_product_value == "Cookie" or type_product_value == "cookie" or type_product_value == "cookies":
+            return redirect('/shop/products/Cookies')
+        elif type_product_value == "Donut" or type_product_value == "Donuts" or type_product_value == "donut" or type_product_value == "donuts":
+            return redirect('/shop/products/Donuts')
+        elif type_product_value == "icecream" or type_product_value == "icecreams" or type_product_value == "Icecreams" or type_product_value == "Icecream" or type_product_value == "IceCream" or type_product_value == "IceCreams" or type_product_value == "Ice-Cream" or type_product_value == "Ice-Creams" or type_product_value == "ice-cream" or type_product_value == "ice-creams":
+            return redirect('/shop/products/icecreams')
+        else:
+            messages.warning(request, "Sorry!! Product Not Found")
+            return redirect('/shop/')
+    return render(request, 'shop.html')
+
+
+def shop_products_cakes(request):
+    return render(request, 'shop-cake.html')
+
+
+def shop_products_chocolates(request):
+    return render(request, 'shop-chocolates.html')
+
+
+def shop_products_cookies(request):
+    return render(request, 'shop-cookies.html')
+
+
+def shop_products_donuts(request):
+    return render(request, 'shop-donuts.html')
+
+
+def shop_products_icecreams(request):
+    return render(request, 'shop-icecreams.html')
