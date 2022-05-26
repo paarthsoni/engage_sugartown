@@ -1450,7 +1450,7 @@ ol {
   position: absolute;
   right: -16px;
   top: 0;
-  content: "|";
+
   color: #888888;
 }
 
@@ -1822,13 +1822,13 @@ ol {
   font-weight: 600;
 }
 
-.product__details__option .pro-qty .qtybtn.dec {
+/* .product__details__option .pro-qty .qtybtn.dec {
   color: #888888;
 }
 
 .product__details__option .pro-qty .qtybtn.inc {
   color: #111111;
-}
+} */
 
 .product__details__option .pro-qty input {
   border: none;

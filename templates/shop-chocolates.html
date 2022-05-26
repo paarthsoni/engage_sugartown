@@ -77,7 +77,8 @@ Home
                             <div class="product__item__price">₹100.00/per piece</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Dairy Milk Silk' product_price=100 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -97,7 +98,8 @@ Home
                             <div class="product__item__price">₹200.00/per piece</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Galaxy' product_price=200 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -117,7 +119,8 @@ Home
                             <div class="product__item__price">₹150.00/per piece</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Mars' product_price=150 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -137,7 +140,8 @@ Home
                             <div class="product__item__price">₹200.00/per piece</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Snickers' product_price=200 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -157,7 +161,8 @@ Home
                             <div class="product__item__price">₹300.00/per piece</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Toblerone' product_price=300 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -177,7 +182,8 @@ Home
                             <div class="product__item__price">₹350.00/per piece</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Schimitten' product_price=350 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -197,7 +203,8 @@ Home
                             <div class="product__item__price">₹320.00/per piece</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Lindt' product_price=320 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -217,7 +224,8 @@ Home
                             <div class="product__item__price">₹120.00/per piece</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Kit Kat' product_price=120 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -225,87 +233,7 @@ Home
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-9.jpg">
-                            <div class="product__label">
-                                <span>Chocolates</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">VEGAN/GLUTEN FREE</a></h6>
-                            <div class="product__item__price">₹500.00/per piece</div>
-                            <div class="cart_add">
-                                {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
-                                {% else %}
-                                <a href="/login"> Add to cart</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-10.jpg">
-                            <div class="product__label">
-                                <span>Chocolates</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">SWEET CELTICS</a></h6>
-                            <div class="product__item__price">₹500.00/per piece/div>
-                            <div class="cart_add">
-                                {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
-                                {% else %}
-                                <a href="/login"> Add to cart</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-11.jpg">
-                            <div class="product__label">
-                                <span>Chocolates</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">SWEET AUTUMN LEAVES</a></h6>
-                            <div class="product__item__price">₹500.00/per piece</div>
-                            <div class="cart_add">
-                                {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
-                                {% else %}
-                                <a href="/login"> Add to cart</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-12.jpg">
-                            <div class="product__label">
-                                <span>Chocolates</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">PALE YELLOW SWEET</a></h6>
-                            <div class="product__item__price">₹500.00/per piece</div>
-                            <div class="cart_add">
-                                {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
-                                {% else %}
-                                <a href="/login"> Add to cart</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+
                 <div class="shop__last__option">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">

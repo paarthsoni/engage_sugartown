@@ -1,5 +1,9 @@
+from asyncio.windows_events import NULL
+from datetime import datetime
 from importlib.resources import read_text
 from os import path
+from re import I
+from tabnanny import check
 from tempfile import NamedTemporaryFile
 from urllib.request import urlopen
 from django.shortcuts import render, redirect
@@ -8,21 +12,62 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, get_user, login, logout
 from django.contrib.auth.decorators import login_required
 from requests import ReadTimeout, get
-from sympy import re
-
+from django.core.mail import send_mail
 
 from sugartownapp.detection import FaceRecognition
+from sugartownapp.detection1 import FaceRecognition1
+from django.db.models import Sum
 
+from sugartownapp.models import UserProfile, userfaceid, userrequirements, latestoffers_user, user_contactinfo, newsletter_user, user_cart, discount_coupons, user_cart_value, user_wallet, user_order, userorderdetails
 
-from sugartownapp.models import UserProfile, userfaceid, userrequirements, latestoffers_user, user_contactinfo, newsletter_user
 import cv2
 from django.core.files import File
 
+from django.contrib.auth.hashers import check_password
 faceRecognition = FaceRecognition()
+faceRecognition1 = FaceRecognition1()
+
+
+def cartitem(request):
+    username = get_user(request)
+    total_cart_item = user_cart.objects.filter(username=username).aggregate(
+        TOTAL=Sum('quantity'))['TOTAL']
+    # print(total_cart_item)
+    if total_cart_item == None:
+        total_cart_item = 0
+    return total_cart_item
+
+
+def cartcost(request):
+    username = get_user(request)
+    if user_cart_value.objects.filter(username=username).exists():
+
+        total_cart_cost = user_cart_value.objects.get(
+            username=username).total_cart_value
+    else:
+        total_cart_cost = user_cart.objects.filter(username=username).aggregate(
+            TOTAL=Sum('total_price'))['TOTAL']
+
+    if total_cart_cost == None:
+        total_cart_cost = 0
+    return total_cart_cost
+
+
+def changecost(request):
+    username = get_user(request)
+    cost_change = user_cart.objects.filter(username=username).aggregate(
+        TOTAL=Sum('total_price'))['TOTAL']
+
+    return cost_change
 
 
 def index(request):
-    return render(request, 'index.html')
+    if request.user.is_authenticated:
+        total_cart_item = cartitem(request)
+        total_cart_cost = cartcost(request)
+        return render(request, 'index.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost})
+    else:
+        return render(request, 'index.html')
 
 
 def loginuser(request):
@@ -35,9 +80,10 @@ def loginuser(request):
         if user is not None:
 
             face = userfaceid.objects.get(username=username).id_face
-            print(face)
-            face_id = faceRecognition.recognizeFace()
-            print(face_id)
+            print("face", face)
+            face_id = faceRecognition.recognizeFace(face)
+            print("\nfaceid", face_id)
+
             if face_id == face:
                 login(request, user)
                 messages.success(
@@ -94,6 +140,8 @@ def registeruser(request):
                 user.save()
                 userdata.save()
                 userfacedata.save()
+                user_wallet_username = user_wallet(username=username)
+                user_wallet_username.save()
 
                 addFace(request, username)
                 messages.success(
@@ -190,10 +238,17 @@ def latestoffers_user_email_data(request):
 
 
 def about(request):
-    return render(request, 'about.html')
+
+    if request.user.is_authenticated:
+        total_cart_item = cartitem(request)
+        total_cart_cost = cartcost(request)
+        return render(request, 'about.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost})
+    else:
+        return render(request, 'about.html')
 
 
 def contact(request):
+
     if request.method == "POST":
         username = get_user(request)
         name = request.POST['name']
@@ -214,7 +269,13 @@ def contact(request):
 
             return redirect('/contact/')
 
-    return render(request, 'contact.html')
+    if request.user.is_authenticated:
+        total_cart_item = cartitem(request)
+        total_cart_cost = cartcost(request)
+        return render(request, 'contact.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost})
+    else:
+
+        return render(request, 'contact.html')
 
 
 def blog(request):
@@ -236,21 +297,48 @@ def blog(request):
             messages.warning(
                 request, "Sorry!! This Email is already registered with us for Sugar Town Newletters")
             return redirect('/blog/')
-    return render(request, 'blog.html')
+
+    if request.user.is_authenticated:
+        total_cart_item = cartitem(request)
+        total_cart_cost = cartcost(request)
+        return render(request, 'blog.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost})
+    else:
+
+        return render(request, 'blog.html')
 
 
+@login_required(login_url='/login/')
 def account(request):
-    return render(request, 'account.html')
+    if request.user.is_authenticated:
+        username = get_user(request)
+        total_cart_item = cartitem(request)
+        total_cart_cost = cartcost(request)
+        wallet_balance = user_wallet.objects.get(
+            username=username).wallet_balance
+
+        if wallet_balance == None:
+            wallet_balance = 0
+
+        user_order_history = user_order.objects.filter(username=username).all()
+
+        return render(request, 'account.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost, 'wallet_balance': wallet_balance, 'user_order_history': user_order_history})
+    else:
+        return render(request, 'account.html')
 
 
 def shop(request):
-    return render(request, 'shop.html')
+    if request.user.is_authenticated:
+        total_cart_item = cartitem(request)
+        total_cart_cost = cartcost(request)
+        return render(request, 'shop.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost})
+    else:
+        return render(request, 'shop.html')
 
 
 def shop_products(request):
     if request.method == "POST":
         type_product_value = request.POST.get('producttype')
-        if type_product_value == "Cupcake" or type_product_value == "cupcake" or type_product_value == "cupCake":
+        if type_product_value == "Cupcake" or type_product_value == "cupcake" or type_product_value == "cupCake" or type_product_value == "cupCakes" or type_product_value == "CupCakes" or type_product_value == "Cupcakes" or type_product_value == "cupcakes":
             return redirect('/shop/')
         elif type_product_value == "Cake" or type_product_value == "Cakes" or type_product_value == "cake" or type_product_value == "cakes":
             return redirect('/shop/products/Cakes')
@@ -269,20 +357,473 @@ def shop_products(request):
 
 
 def shop_products_cakes(request):
-    return render(request, 'shop-cake.html')
+    if request.user.is_authenticated:
+        total_cart_item = cartitem(request)
+        total_cart_cost = cartcost(request)
+        return render(request, 'shop-cake.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost})
+    else:
+        return render(request, 'shop-cake.html')
 
 
 def shop_products_chocolates(request):
-    return render(request, 'shop-chocolates.html')
+    if request.user.is_authenticated:
+        total_cart_item = cartitem(request)
+        total_cart_cost = cartcost(request)
+        return render(request, 'shop-chocolates.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost})
+    else:
+        return render(request, 'shop-chocolates.html')
 
 
 def shop_products_cookies(request):
-    return render(request, 'shop-cookies.html')
+    if request.user.is_authenticated:
+        total_cart_item = cartitem(request)
+        total_cart_cost = cartcost(request)
+        return render(request, 'shop-cookies.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost})
+    else:
+        return render(request, 'shop-cookies.html')
 
 
 def shop_products_donuts(request):
-    return render(request, 'shop-donuts.html')
+    if request.user.is_authenticated:
+        total_cart_item = cartitem(request)
+        total_cart_cost = cartcost(request)
+        return render(request, 'shop-donuts.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost})
+    else:
+        return render(request, 'shop-donuts.html')
 
 
 def shop_products_icecreams(request):
-    return render(request, 'shop-icecreams.html')
+    if request.user.is_authenticated:
+        total_cart_item = cartitem(request)
+        total_cart_cost = cartcost(request)
+        return render(request, 'shop-icecreams.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost})
+    else:
+        return render(request, 'shop-icecreams.html')
+
+
+@login_required(login_url='/login/')
+def shop_cart(request):
+    username = get_user(request)
+    user_cart_items = user_cart.objects.filter(username=username).all()
+
+    total_cart_cost = user_cart.objects.filter(username=username).aggregate(
+        TOTAL=Sum('total_price'))['TOTAL']
+
+    total_cart_item = cartitem(request)
+
+    couponcode = discount_coupons.objects.all()
+
+    total_cart_cost = cartcost(request)
+    if total_cart_cost == None:
+        total_cart_cost = 0
+    print("value ", total_cart_cost)
+    wallet_balance = user_wallet.objects.get(
+        username=username).wallet_balance
+
+    if wallet_balance == None:
+        wallet_balance = 0
+
+    return render(request, 'shoping-cart.html', {'cart_detail': user_cart_items, 'total_cart_item': total_cart_item, 'discount_coupons': couponcode, 'total_cart_cost': total_cart_cost, 'wallet_balance': wallet_balance})
+
+
+@login_required(login_url='/login/')
+def cart_add(request, product_name, product_price):
+    username = get_user(request)
+    # print(product_name)
+    # print(product_price)
+    if user_cart.objects.filter(username=username, product_name=product_name).exists():
+        cartvalue = user_cart.objects.get(
+            username=username, product_name=product_name).quantity
+
+        user_cart.objects.filter(
+            username=username, product_name=product_name).update(quantity=cartvalue + 1)
+
+        cartvalue = user_cart.objects.get(
+            username=username, product_name=product_name).quantity
+
+        user_cart.objects.filter(
+            username=username, product_name=product_name).update(total_price=cartvalue * product_price)
+
+        total_cart_value = changecost(request)
+
+        print(total_cart_value)
+
+        coupon_applied = user_cart_value.objects.get(
+            username=username).coupon_applied
+
+        if coupon_applied != "None":
+            coupon_discount = discount_coupons.objects.get(
+                couponcode=coupon_applied).discount_percent
+            coupon_valid_price = discount_coupons.objects.get(
+                couponcode=coupon_applied).validprice
+
+            coupon_discount = (100-coupon_discount)/100
+
+            if total_cart_value > coupon_valid_price:
+                user_cart_value.objects.filter(username=username).update(
+                    total_cart_value=total_cart_value*coupon_discount)
+            else:
+                user_cart_value.objects.filter(username=username).update(
+                    total_cart_value=total_cart_value)
+        else:
+            user_cart_value.objects.filter(username=username).update(
+                total_cart_value=total_cart_value)
+
+        messages.info(
+            request, f'{product_name} added successfully to cart!!', product_name)
+        return redirect('/shop/')
+    else:
+
+        user_cart_product = user_cart(
+            username=username, product_name=product_name, product_price=product_price, quantity=1, total_price=product_price)
+        user_cart_product.save()
+        total_cart_value = changecost(request)
+        print(total_cart_value)
+        if user_cart_value.objects.filter(username=username).exists():
+            total_cart_value = changecost(request)
+            print(total_cart_value)
+            coupon_applied = user_cart_value.objects.get(
+                username=username).coupon_applied
+            print(coupon_applied)
+
+            if coupon_applied != "None":
+                coupon_discount = discount_coupons.objects.get(
+                    couponcode=coupon_applied).discount_percent
+                coupon_valid_price = discount_coupons.objects.get(
+                    couponcode=coupon_applied).validprice
+
+                coupon_discount = (100-coupon_discount)/100
+
+                if total_cart_value > coupon_valid_price:
+                    user_cart_value.objects.filter(username=username).update(
+                        total_cart_value=total_cart_value*coupon_discount)
+                else:
+                    user_cart_value.objects.filter(username=username).update(
+                        total_cart_value=total_cart_value)
+            else:
+                user_cart_value.objects.filter(username=username).update(
+                    total_cart_value=total_cart_value)
+
+        else:
+            total_value = user_cart_value(
+                username=username, total_cart_value=total_cart_value)
+            total_value.save()
+
+        messages.info(
+            request, f"{product_name} added successfully to cart!!", product_name)
+        return redirect('/shop/')
+
+
+@login_required(login_url='/login/')
+def delete_cart_item(request, product_name):
+    username = get_user(request)
+    delete_item = user_cart.objects.get(
+        username=username, product_name=product_name)
+    delete_item.delete()
+    total_cart_value = changecost(request)
+    print(total_cart_value)
+    coupon_applied = user_cart_value.objects.get(
+        username=username).coupon_applied
+
+    if coupon_applied != "None":
+        coupon_discount = discount_coupons.objects.get(
+            couponcode=coupon_applied).discount_percent
+        coupon_valid_price = discount_coupons.objects.get(
+            couponcode=coupon_applied).validprice
+
+        coupon_discount = (100-coupon_discount)/100
+
+        if total_cart_value > coupon_valid_price:
+            user_cart_value.objects.filter(username=username).update(
+                total_cart_value=total_cart_value*coupon_discount)
+        else:
+            user_cart_value.objects.filter(username=username).update(
+                total_cart_value=total_cart_value)
+    else:
+        user_cart_value.objects.filter(username=username).update(
+            total_cart_value=total_cart_value)
+    messages.success(
+        request, f'{product_name} removed successfully from cart!')
+    return redirect('/cart')
+
+
+@login_required(login_url='/login/')
+def alter_cart(request, product_name):
+    if request.method == "POST":
+        username = get_user(request)
+        alteredquantity = request.POST.get('quantityproduct')
+        print(alteredquantity)
+
+        user_cart.objects.filter(
+            username=username, product_name=product_name).update(quantity=alteredquantity)
+
+        cartvalue = user_cart.objects.get(
+            username=username, product_name=product_name).quantity
+
+        productprice = user_cart.objects.get(
+            username=username, product_name=product_name).product_price
+
+        user_cart.objects.filter(
+            username=username, product_name=product_name).update(total_price=cartvalue * productprice)
+
+        total_cart_value = changecost(request)
+        print(total_cart_value)
+        coupon_applied = user_cart_value.objects.get(
+            username=username).coupon_applied
+
+        if coupon_applied != "None":
+            coupon_discount = discount_coupons.objects.get(
+                couponcode=coupon_applied).discount_percent
+            coupon_valid_price = discount_coupons.objects.get(
+                couponcode=coupon_applied).validprice
+
+            coupon_discount = (100-coupon_discount)/100
+
+            if total_cart_value > coupon_valid_price:
+                user_cart_value.objects.filter(username=username).update(
+                    total_cart_value=total_cart_value*coupon_discount)
+            else:
+                user_cart_value.objects.filter(username=username).update(
+                    total_cart_value=total_cart_value)
+        else:
+            user_cart_value.objects.filter(username=username).update(
+                total_cart_value=total_cart_value)
+        messages.success(
+            request, f'{product_name} updated Successfully!')
+        return redirect('/cart')
+    return render(request, 'shoping-cart.html')
+
+
+@login_required(login_url='/login/')
+def discount_coupon(request):
+    if request.method == "POST":
+        username = get_user(request)
+        couponname = request.POST.get('couponname')
+
+        if discount_coupons.objects.filter(couponcode=couponname).exists():
+            coupon_exists = 'False'
+
+            coupon = user_cart_value.objects.get(
+                username=username).coupon_applied
+
+            cartcost = user_cart_value.objects.get(
+                username=username).total_cart_value
+
+            cost = discount_coupons.objects.get(
+                couponcode=couponname).validprice
+
+            if coupon != couponname and cartcost >= cost:
+                coupon_discount = discount_coupons.objects.get(
+                    couponcode=couponname).discount_percent
+
+                coupon_discount = (100-coupon_discount)/100
+
+                user_cart_value.objects.filter(
+                    username=username).update(total_cart_value=cartcost*coupon_discount)
+
+                user_cart_value.objects.filter(
+                    username=username).update(coupon_applied=couponname)
+
+                messages.success(request, 'Coupon Applied Successfully!!')
+                return redirect('/checkout')
+            elif cartcost < cost:
+                messages.warning(
+                    request, 'Coupon Not Available for the cart amount!!')
+                return redirect('/checkout')
+            else:
+                messages.warning(request, 'Coupon already applied!!')
+                return redirect('/checkout')
+        else:
+            messages.warning(request, 'No Such Coupon exists!!')
+            return redirect('/checkout')
+
+    return render(request, 'shoping-cart.html')
+
+
+@login_required(login_url='/login/')
+def checkout(request):
+
+    cart_item = cartitem(request)
+
+    if cart_item != 0:
+
+        if request.method == "POST":
+            username = get_user(request)
+            fname = request.POST.get('fname')
+            lname = request.POST.get('lname')
+            country = request.POST.get('country')
+            street = request.POST.get('street')
+            apartment = request.POST.get('apartment')
+            city = request.POST.get('town')
+            postcode = request.POST.get('postcode')
+            phone = request.POST.get('phone')
+            email = request.POST.get('email')
+            total_payable_amount = user_cart_value.objects.get(
+                username=username).total_cart_value
+            user_wallet_balance = user_wallet.objects.get(
+                username=username).wallet_balance
+
+            if len(phone) == 10 and user_wallet_balance >= total_payable_amount:
+                face = userfaceid.objects.get(
+                    username=username).id_face
+                print("face", face)
+                face_id = faceRecognition1.recognizeFace(face)
+                print("faceid", face_id)
+                if face == face_id:
+                    current_time = datetime.now()
+                    print(current_time)
+                    user_wallet.objects.filter(username=username).update(
+                        wallet_balance=user_wallet_balance-total_payable_amount)
+                    user_order_data = user_order(username=username, fname=fname, lname=lname, country=country, street=street,
+                                                 apartment=apartment, city=city, postcode=postcode, phone=phone, email=email, total_payable_amount=total_payable_amount, total_items=cart_item, orderplaced_on=current_time)
+
+                    user_order_data.save()
+                    user_products = user_cart.objects.filter(username=username).values_list(
+                        'product_name')
+
+                    user_quantity = user_cart.objects.filter(username=username).values_list(
+                        'quantity')
+
+                    for i, j in zip(user_products, user_quantity):
+                        user_orderdetails_data = userorderdetails(
+                            username=username, product_name=i[0], quantity=j[0])
+
+                        user_orderdetails_data.save()
+
+                    user_cart_delete = user_cart.objects.filter(
+                        username=username).all()
+                    user_cart_delete.delete()
+
+                    user_cart_value.objects.filter(
+                        username=username).update(total_cart_value=0)
+
+                    user_cart_value.objects.filter(
+                        username=username).update(coupon_applied="None")
+
+                    messages.success(request, 'Order Placed Successfully')
+                    send_mail("order confirmation", "order placed successfully",
+                              "sugartown20@gmail.com", ['paarth2812@gmail.com'], fail_silently=False)
+                    return redirect('/')
+                elif face != face_id:
+                    messages.warning(
+                        request, 'Sorry! Not able to match the face associated with this account, Order Not Placed')
+                    return redirect('/checkout')
+
+            elif len(phone) != 10:
+                messages.warning(request, 'Invalid Contact Number!!')
+                return redirect('/checkout')
+
+            elif total_payable_amount > user_wallet_balance:
+                messages.warning(request, 'Insufficient Wallet Balance!!')
+                return redirect('/checkout')
+
+        if request.user.is_authenticated:
+            total_cart_item = cartitem(request)
+            total_cart_cost = cartcost(request)
+            couponcode = discount_coupons.objects.all()
+            username = get_user(request)
+            product_details = user_cart.objects.filter(username=username).all()
+
+            cart_value = user_cart_value.objects.get(
+                username=username).total_cart_value
+
+            user_wallet_balance = user_wallet.objects.get(
+                username=username).wallet_balance
+
+            return render(request, 'checkout.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost, 'discount_coupons': couponcode, 'cart_products': product_details, 'total_cart_value': cart_value, 'wallet_balance': user_wallet_balance})
+        else:
+            return render(request, 'checkout.html')
+
+    else:
+        messages.warning(request, "No Items Present in the Cart!!")
+        return redirect('/shop/cart')
+
+
+@login_required(login_url='/login/')
+def add_balance(request):
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        amount = request.POST.get('amount')
+
+        user_exists = 'False'
+        username_account = get_user(request)
+        username_account = str(username_account)
+
+        if user_wallet.objects.filter(username=username).exists():
+            user_exists = 'True'
+
+        user_username = 'False'
+
+        if username == username_account:
+            user_username = 'True'
+
+        if user_exists == 'True' and user_username == 'True':
+            account_password = User.objects.get(username=username).password
+            checkpassword = check_password(password, account_password)
+
+            if checkpassword == True:
+                face = userfaceid.objects.get(
+                    username=username_account).id_face
+                print("face", face)
+                face_id = faceRecognition1.recognizeFace(face)
+                print("faceid", face_id)
+                if face == face_id:
+                    balance = user_wallet.objects.get(
+                        username=username).wallet_balance
+                    user_wallet.objects.filter(username=username).update(
+                        wallet_balance=balance+int(amount))
+                    # face_id = -1
+                    messages.success(
+                        request, f'{amount} added Successfully to Sugar Town Wallet!!')
+                    return redirect('/account')
+                elif face != face_id:
+                    messages.warning(
+                        request, 'Sorry! Not able to match the face associated with this account')
+                    return redirect('/account')
+
+            elif checkpassword == False:
+                messages.warning(
+                    request, 'Sorry! Not able to match the password associated with this account')
+                return redirect('/account')
+
+        elif user_exists == 'False' and user_username == 'True':
+            account_password = User.objects.get(username=username).password
+            checkpassword = check_password(password, account_password)
+
+            if checkpassword == True:
+                face = userfaceid.objects.get(
+                    username=username_account).id_face
+                print("face", face)
+                face_id = faceRecognition1.recognizeFace(face)
+                print("faceid", face_id)
+                if face == face_id:
+                    wallet_update = user_wallet(
+                        username=username, wallet_balance=amount)
+                    wallet_update.save()
+                    # face_id = -1
+                    messages.success(
+                        request, f'{amount} added Successfully to Sugar Town Wallet!!')
+                    return redirect('/account')
+                elif face != face_id:
+                    messages.warning(
+                        request, 'Sorry! Not able to match the face associated with this account')
+                    return redirect('/account')
+
+            elif checkpassword == False:
+                messages.warning(
+                    request, 'Sorry! Not able to match the password associated with this account')
+                return redirect('/account')
+
+        elif user_username == 'False':
+            messages.warning(
+                request, 'Sorry! Not able to find the username entered in our Databases')
+            return redirect('/account')
+
+    if request.user.is_authenticated:
+        total_cart_item = cartitem(request)
+        total_cart_cost = cartcost(request)
+        return render(request, 'balance.html', {'total_cart_item': total_cart_item, 'total_cart_cost': total_cart_cost})
+    else:
+        return render(request, 'balance.html')

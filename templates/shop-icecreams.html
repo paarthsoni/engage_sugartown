@@ -78,7 +78,8 @@ Home
                             <div class="product__item__price">₹200.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='London Dairy Icecream' product_price=200 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -99,7 +100,8 @@ Home
                             <div class="product__item__price">₹300.00 </div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Baskin Robbins Icecream' product_price=300 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -120,7 +122,8 @@ Home
                             <div class="product__item__price">₹100.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Kwality Walls Icecream' product_price=100 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -141,7 +144,8 @@ Home
                             <div class="product__item__price">₹120.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Havmor Icecream' product_price=120 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -162,7 +166,8 @@ Home
                             <div class="product__item__price">₹150.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Amul Icecream' product_price=150 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -183,7 +188,8 @@ Home
                             <div class="product__item__price">₹150.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Magnum Icecream' product_price=150 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}

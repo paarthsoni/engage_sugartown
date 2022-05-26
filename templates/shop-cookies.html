@@ -77,7 +77,8 @@ Home
                             <div class="product__item__price">₹500.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Choco Chips Cookies' product_price=500 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -97,7 +98,8 @@ Home
                             <div class="product__item__price">₹400.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Almond Cookies' product_price=400 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -117,7 +119,8 @@ Home
                             <div class="product__item__price">₹450.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Black Current Cookies' product_price=450 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -137,7 +140,8 @@ Home
                             <div class="product__item__price">₹600.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Walnut Cookies' product_price=600 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -157,7 +161,8 @@ Home
                             <div class="product__item__price">₹550.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Cashew Cookies' product_price=550 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -177,7 +182,8 @@ Home
                             <div class="product__item__price">₹500.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Chocolate Cookies' product_price=500 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}

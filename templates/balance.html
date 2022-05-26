@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}
+Cart
+{% endblock title %}
+
+{% block body %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+    <strong> {{ message }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+
+
+<body>
+
+    <div class="wrapper" style="max-width:520px;">
+        <div class="title-text">
+            <div class="title login">
+                Add Money
+            </div>
+
+        </div>
+        <div class="form-container">
+
+            <div class="form-inner">
+                <form action="/addbalance/transfer" method="post" class="transfer" name="transferform">
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="text" placeholder="Username" name="username" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" placeholder="Password" name="password" required>
+                    </div>
+                    <div class="field">
+                        <input type="number" placeholder="Amount to be Added" name="amount" required>
+                    </div>
+
+                    <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Add Money">
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+{%endblock%}

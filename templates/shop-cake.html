@@ -78,7 +78,8 @@ Home
                             <div class="product__item__price">₹400.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='CHOCOLATE TRUFFLE-cake' product_price=400 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -99,7 +100,8 @@ Home
                             <div class="product__item__price">₹500.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='RED VELVET-cake' product_price=500 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -119,7 +121,8 @@ Home
                             <div class="product__item__price">₹550.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Gulab jamun-cake' product_price=550 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -136,11 +139,13 @@ Home
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Strwaberry Delicacy</a></h6>
+                            <h6><a href="#">Strawberry Delicacy</a></h6>
                             <div class="product__item__price">₹600.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a
+                                    href="{% url 'cartload' product_name='Strawberry Delicacy-cake' product_price=600 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -160,7 +165,8 @@ Home
                             <div class="product__item__price">₹450.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Black Forest-cake' product_price=450 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -181,7 +187,8 @@ Home
                             <div class="product__item__price">₹550.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='German Chocolate-cake' product_price=550 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -201,7 +208,8 @@ Home
                             <div class="product__item__price">₹600.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Dutch Chocolate-cake' product_price=600 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -221,7 +229,8 @@ Home
                             <div class="product__item__price">₹500.00/kg</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Pineapple-cake' product_price=500 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -229,87 +238,7 @@ Home
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-9.jpg">
-                            <div class="product__label">
-                                <span>Cakes</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">VEGAN/GLUTEN FREE</a></h6>
-                            <div class="product__item__price">$98.85</div>
-                            <div class="cart_add">
-                                {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
-                                {% else %}
-                                <a href="/login"> Add to cart</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-10.jpg">
-                            <div class="product__label">
-                                <span>Cakes</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">SWEET CELTICS</a></h6>
-                            <div class="product__item__price">$5.77</div>
-                            <div class="cart_add">
-                                {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
-                                {% else %}
-                                <a href="/login"> Add to cart</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-11.jpg">
-                            <div class="product__label">
-                                <span>Cakes</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">SWEET AUTUMN LEAVES</a></h6>
-                            <div class="product__item__price">$26.41</div>
-                            <div class="cart_add">
-                                {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
-                                {% else %}
-                                <a href="/login"> Add to cart</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-12.jpg">
-                            <div class="product__label">
-                                <span>Cakes</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">PALE YELLOW SWEET</a></h6>
-                            <div class="product__item__price">$22.47</div>
-                            <div class="cart_add">
-                                {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
-                                {% else %}
-                                <a href="/login"> Add to cart</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+
                 <div class="shop__last__option">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">

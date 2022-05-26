@@ -1,8 +1,10 @@
+from datetime import datetime, timezone
 import email
 from email import message
 from email.policy import default
 import uuid
 from django.db import models
+from numpy import True_
 from pkg_resources import Requirement
 from sqlalchemy import false
 from django.db.models.signals import post_save
@@ -82,3 +84,100 @@ class newsletter_user(models.Model):
 
     def __str__(self):
         return self.username + " - "+self.email
+
+
+class user_cart(models.Model):
+    username = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+    product_name = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+    product_price = models.IntegerField(null=False, unique=False, default=0)
+    quantity = models.IntegerField(null=False, unique=False, default=0)
+    total_price = models.IntegerField(null=False, unique=False, default=0)
+    total_cart_value = models.IntegerField(null=False, unique=False, default=0)
+
+    def __str__(self):
+        return self.username
+
+
+class discount_coupons(models.Model):
+    coupon_name = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+    couponcode = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+    validprice = models.IntegerField(null=False, unique=False, default=0)
+    discount_percent = models.IntegerField(null=False, unique=False, default=0)
+
+    def __str__(self):
+        return self.coupon_name
+
+
+class user_cart_value(models.Model):
+    username = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+    total_cart_value = models.IntegerField(null=True, unique=False, default=0)
+    coupon_applied = models.CharField(
+        max_length=1024, null=True, unique=False, default="None")
+
+    def __str__(self):
+        return self.username
+
+
+class user_wallet(models.Model):
+    username = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+    wallet_balance = models.IntegerField(null=True, unique=False, default=0)
+
+    def __str__(self):
+        return self.username
+
+
+class user_order(models.Model):
+    username = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+    fname = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+    lname = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+    country = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+    street = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+
+    apartment = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+
+    city = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+    postcode = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+    phone = models.CharField(
+        max_length=12, null=False, unique=False, default="")
+    email = models.EmailField(
+        max_length=1024, null=False, unique=False, default="")
+
+    total_payable_amount = models.IntegerField(
+        null=False, unique=False, default=0)
+
+    total_items = models.IntegerField(
+        null=False, unique=False, default=0)
+
+    orderplaced_on = models.DateTimeField(
+        auto_now_add=False, blank=False, null=False)
+
+    def __str__(self):
+        return self.username+" - "+self.fname+" "+self.lname
+
+
+class userorderdetails(models.Model):
+    username = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+
+    product_name = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+
+    quantity = models.CharField(
+        max_length=1024, null=False, unique=False, default="")
+
+    def __str__(self):
+        return self.username

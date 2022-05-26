@@ -5,5 +5,85 @@ Account
 {% endblock title %}
 
 {% block body %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+    <strong> {{ message }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="breadcrumb__text">
+                    <h2>My Account <br> (Past Orders)</h2>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="breadcrumb__links">
+                    <style>
+                        .breadcrumb__links a:after {
+                            content: none;
+                        }
+                    </style>
+                    <!-- <a href="/">Availabl Wallet Balance: </a> -->
+                    <a href="/addbalance"><span style="color: black;">Available Wallet Balance:
+                            ₹{{wallet_balance}}.00</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shopping__cart__table">
+                    <table style="width: 800px;">
+                        <thead>
+                            <tr>
+                                <th>Order Placed by</th>
+                                <th> Total Items </th>
+                                <th>Total Order Cost </th>
+                                <th> Order Placed on (Date & Time)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order_history in user_order_history %}
+                            <tr>
+                                <td class="cart__price">
+                                    {{order_history.fname}} {{order_history.lname}}
+                                </td>
+                                <td class="cart__price"> {{order_history.total_items}} </td>
+                                <td class="cart__price"> ₹{{order_history.total_payable_amount}} </td>
+                                <td class="cart__price"> {{order_history.orderplaced_on}} </td>
 
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+
+                </div>
+            </div>
+            <!-- <div class="col-lg-4">
+
+                <div class="cart__total">
+                    <h6>Order total</h6>
+                    <ul>
+                        <li>Subtotal <span>$ 169.50</span></li>
+                        <li>Total <span>$ 169.50</span></li>
+                    </ul>
+
+                </div>
+            </div> -->
+        </div>
+    </div>
+</section>
+<!-- Shopping Cart Section End -->
 {% endblock body %}

@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 from sugartown.settings import BASE_DIR
 from django.contrib import messages
-
+import face_recognition
 detector = cv2.CascadeClassifier(
     str(BASE_DIR)+'/sugartownapp/haarcascade_frontalface_default.xml')
 recognizer = cv2.face.LBPHFaceRecognizer_create()
@@ -96,7 +96,8 @@ class FaceRecognition:
         print("\n {0} faces trained. Exiting Program".format(
             len(np.unique(ids))))
 
-    def recognizeFace(self):
+    def recognizeFace(self, face):
+        face_id = -1
         recognizer.read(str(BASE_DIR)+'/sugartownapp/trainer/trainer.yml')
         cascadePath = str(BASE_DIR) + \
             '/sugartownapp/haarcascade_frontalface_default.xml'
@@ -129,13 +130,14 @@ class FaceRecognition:
                 cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
                 face_id, confidence = recognizer.predict(gray[y:y+h, x:x+w])
-
+                print("faceid=", face_id)
                 # Check if confidence is less then 100 ==> "0" is perfect match
-                if (confidence < 100):
+                if (confidence <= 60):
                     name = "Detected"
-                else:
+                elif(confidence > 60):
+                    face_id = -1
                     name = "Unknown"
-                    break
+                    # break
 
                 cv2.putText(img, str(name), (x+5, y-5),
                             font, 1, (255, 255, 255), 2)
@@ -156,5 +158,13 @@ class FaceRecognition:
         # print("\n Exiting Program")
         cam.release()
         cv2.destroyAllWindows()
+        # print(face_id)
+        rec_face = -1
+        if face == face_id:
+            rec_face = face_id
+            face_id = -1
+        else:
+            rec_face = -1
+            face_id = -1
 
-        return face_id
+        return rec_face

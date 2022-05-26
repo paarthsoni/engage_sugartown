@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title%}
 Home
 {% endblock title %}
@@ -7,9 +8,10 @@ Home
 {% block body %}
 {% if messages %}
 {% for message in messages %}
-<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert"
+    style="background-color: cyan">
     <strong> {{ message }}</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <button type=" button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {% endfor %}
 {% endif %}
@@ -81,7 +83,8 @@ Home
                             <div class="product__item__price">₹100.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Butterscotch-cupcake' product_price=100 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -101,7 +104,9 @@ Home
                             <div class="product__item__price">₹150.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a
+                                    href="{% url 'cartload' product_name='cookie and cream-cupcake' product_price=150 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -121,7 +126,9 @@ Home
                             <div class="product__item__price">₹120.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a
+                                    href="{% url 'cartload' product_name='Gluten free Mini Dozen-cupcake' product_price=120 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -141,7 +148,8 @@ Home
                             <div class="product__item__price">₹170.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Sweet Rainbow-cupcake' product_price=170 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -161,7 +169,9 @@ Home
                             <div class="product__item__price">₹170.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a
+                                    href="{% url 'cartload' product_name='Vanilla Salted Carmael-cupcake' product_price=170 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -181,7 +191,9 @@ Home
                             <div class="product__item__price">₹150.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a
+                                    href="{% url 'cartload' product_name='German Chocolate-cupcake' product_price=150 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -201,7 +213,8 @@ Home
                             <div class="product__item__price">₹200.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Dulce De Leche-cupcake' product_price=200 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -221,7 +234,8 @@ Home
                             <div class="product__item__price">₹180.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='Mississippi Mud-cupcake' product_price=180 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -241,7 +255,9 @@ Home
                             <div class="product__item__price">₹130.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a
+                                    href="{% url 'cartload' product_name='VEGAN GLUTEN FREE-cupcake' product_price=130 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -261,7 +277,8 @@ Home
                             <div class="product__item__price">₹190.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a href="{% url 'cartload' product_name='SWEET CELTICS-cupcake' product_price=190 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -281,7 +298,9 @@ Home
                             <div class="product__item__price">₹210.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a
+                                    href="{% url 'cartload' product_name='SWEET AUTUMN LEAVES-cupcake' product_price=210 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
@@ -301,7 +320,9 @@ Home
                             <div class="product__item__price">₹140.00</div>
                             <div class="cart_add">
                                 {% if request.user.is_authenticated %}
-                                <a href="#">Add to cart</a>
+                                <a
+                                    href="{% url 'cartload' product_name='PALE YELLOW SWEET-cupcake' product_price=140 %}">Add
+                                    to cart</a>
                                 {% else %}
                                 <a href="/login"> Add to cart</a>
                                 {% endif %}
