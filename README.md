@@ -55,7 +55,7 @@ Instructions:
 2) cd sugartown
 3) Installing Dependencies:<br />
     pip install pillow <br />
-    pip install cv2  <br />     
+    pip install cv2 <br />     
     pip install numpy <br />
     pip install psyopg2 <br />
         
