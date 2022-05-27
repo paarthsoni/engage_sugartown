@@ -1,4 +1,4 @@
-SugarTown - An online dessert Shopping store with Facial Recognition Features for added Security
+ <b>SugarTown - An online dessert Shopping store with Facial Recognition Features for added Security</b>
 
 Submission for Microsoft Engage 2022
 
