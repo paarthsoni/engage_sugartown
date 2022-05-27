@@ -1,4 +1,4 @@
- <b style="font-size: x-large;">SugarTown - An online dessert Shopping store with Facial Recognition Features for added Security</b>
+ <b><h1>SugarTown - An online dessert Shopping store with Facial Recognition Features for added Security</h1></b>
 
 Submission for Microsoft Engage 2022
 
@@ -46,6 +46,13 @@ Face Recogntion library: Opencv
 7) Order history (Account Page):
 
 ![image](https://user-images.githubusercontent.com/71220869/170701613-0af58d2d-5d8f-45cd-9bdf-d52fb45b38ff.png)
+
+8) Email Notifications after Placing Order:
+
+![image](https://user-images.githubusercontent.com/71220869/170705543-fc159788-8bae-47bf-8d75-df4c81aeede5.png)
+
+
+![image](https://user-images.githubusercontent.com/71220869/170705632-8494874f-b26a-4c31-bb87-42277f28c8e3.png)
 
 
 
