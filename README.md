@@ -54,10 +54,10 @@ Instructions:
 1) git clone https://github.com/paarthsoni/microsoft_engage_sugartown.git
 2) cd sugartown
 3) Installing Dependencies:
-        a) pip install pillow
-        b) pip install cv2       
-        c) pip install numpy
-        d) pip install psyopg2
+        1) pip install pillow
+        2) pip install cv2       
+        3) pip install numpy
+        4) pip install psyopg2
         
 
 
