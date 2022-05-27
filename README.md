@@ -2,23 +2,23 @@
 
 Submission for Microsoft Engage 2022
 
-Description: Sugar Town is an e-commerce dessert store in which you can order desserts online. It has login, add to cart, secure payment checkout, order history viewing  and once the order is placed you receive email notification about the order details and alert about the amount deducted from wallet. 
+<b>Description:</b> Sugar Town is an e-commerce dessert store in which you can order desserts online. It has login, add to cart, secure payment checkout, order history viewing  and once the order is placed you receive email notification about the order details and alert about the amount deducted from wallet. 
 
-Facial Recognition Features:
+<b>Facial Recognition Features:</b>
 1) At the time of Login Face is captured and matched with face associated with the account
 2) At the time of transferring money to sugartown wallet face recognition is done
 3) At the time of checkout while placing order face recognition is done for secure  payment transactions
 
 
 
-Tech Stack:
+<b>Tech Stack:</b>
 Frontend: HTML5, CSS3, Javascript, Bootstrap
 Backend: Django, Python
 Database : Heroku Postgresql database
 Face Recogntion library: Opencv
 
 
-Features & Interfaces (Glimpses of Web Application):
+<b>Features & Interfaces (Glimpses of Web Application):</b>
 
 1) Landing Page after Login:
 
@@ -49,7 +49,7 @@ Features & Interfaces (Glimpses of Web Application):
 
 
 
-Instructions:
+<b>Instructions:</b>
 
 1) git clone https://github.com/paarthsoni/microsoft_engage_sugartown.git
 2) cd sugartown
