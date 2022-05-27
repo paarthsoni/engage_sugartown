@@ -66,7 +66,7 @@ Face Recogntion library: Opencv<br />
     pip install numpy <br />
     pip install psyopg2 <br />
         
-
+<h3><b>Note: </h3></b> It may take 2 to 3 seconds more to perform operations related to database as the database attached is a free version of heroku-postgresql
 
 
 
