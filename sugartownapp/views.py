@@ -13,7 +13,8 @@ from django.contrib.auth import authenticate, get_user, login, logout
 from django.contrib.auth.decorators import login_required
 from requests import ReadTimeout, get
 from django.core.mail import send_mail
-
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from sugartownapp.detection import FaceRecognition
 from sugartownapp.detection1 import FaceRecognition1
 from django.db.models import Sum
@@ -701,8 +702,28 @@ def checkout(request):
                         username=username).update(coupon_applied="None")
 
                     messages.success(request, 'Order Placed Successfully')
-                    send_mail("order confirmation", "order placed successfully",
-                              "sugartown20@gmail.com", ['paarth2812@gmail.com'], fail_silently=False)
+                    user_wallet_balance_email = user_wallet.objects.get(
+                        username=username).wallet_balance
+                    user_email = UserProfile.objects.get(
+                        username=username).email
+                    subject = 'SugarTown Wallet Alert'
+                    html_message = render_to_string(
+                        'wallet_alert.html', {'deducted_amount': total_payable_amount, 'wallet_balance': user_wallet_balance_email})
+                    plain_message = strip_tags(html_message)
+                    from_email = 'sugartown20@gmail.com'
+                    to = user_email
+                    send_mail(subject, plain_message, from_email,
+                              [to], html_message=html_message, fail_silently=False)
+
+                    subject = 'no reply (order Confirmation from Sugartown)'
+                    html_message = render_to_string(
+                        'mail_template.html', {'fname': fname, 'lname': lname, 'total_item': cart_item, 'total_cost': total_payable_amount})
+                    plain_message = strip_tags(html_message)
+                    from_email = 'sugartown20@gmail.com'
+                    to = user_email
+                    send_mail(subject, plain_message, from_email,
+                              [to], html_message=html_message, fail_silently=False)
+
                     return redirect('/')
                 elif face != face_id:
                     messages.warning(

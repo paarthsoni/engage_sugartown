@@ -51,7 +51,7 @@ class FaceRecognition1:
             k = cv2.waitKey(10) & 0xff  # Press 'ESC' for exiting video
             if k == 27:
                 break
-            elif count >= 3:  # Take 30 face sample and stop video
+            elif count >= 10:  # Take 30 face sample and stop video
                 break
 
         cam.release()
@@ -132,14 +132,14 @@ class FaceRecognition1:
                 face_id, confidence = recognizer.predict(gray[y:y+h, x:x+w])
 
                 # Check if confidence is less then 100 ==> "0" is perfect match
-                if (confidence < 60):
-                    name = "Detected"
-                elif (confidence > 60):
+                if (confidence < 100):
+                    id = face_id
+                else:
                     face_id = -1
-                    name = "Unknown"
+                    id = face_id
                     # break
 
-                cv2.putText(img, str(name), (x+5, y-5),
+                cv2.putText(img, str(id), (x+5, y-5),
                             font, 1, (255, 255, 255), 2)
                 cv2.putText(img, str(confidence), (x+5, y+h-5),
                             font, 1, (255, 255, 0), 1)
@@ -158,7 +158,7 @@ class FaceRecognition1:
         # print("\n Exiting Program")
         cam.release()
         cv2.destroyAllWindows()
-        # print(face_id)
+        print(face_id)
         rec_face = -1
         if face == face_id:
             rec_face = face_id
