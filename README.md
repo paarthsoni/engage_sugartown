@@ -65,6 +65,8 @@ Face Recogntion library: Opencv<br />
     pip install cv2      
     pip install numpy <br />
     pip install psyopg2 <br />
+    pip install opencv-contrib-python <br />
+    
 4) To run the application: run the command <b>python manage.py runserver</b>
         
 <h3><b>Note: </h3></b> It may take 2 to 3 seconds more to perform operations related to database as the database attached is a free version of heroku-postgresql
