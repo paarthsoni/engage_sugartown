@@ -1,4 +1,4 @@
- <font size="6"><b style="font-size: x-large;">SugarTown - An online dessert Shopping store with Facial Recognition Features for added Security</b></font>
+ <font size=6><b style="font-size: x-large;">SugarTown - An online dessert Shopping store with Facial Recognition Features for added Security</b></font>
 
 Submission for Microsoft Engage 2022
 
