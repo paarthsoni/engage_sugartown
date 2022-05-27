@@ -1,6 +1,6 @@
- <b><h1>SugarTown - An online dessert Shopping store with Facial Recognition Features for added Security</h1></b>
+ <b><h2>SugarTown - An online dessert Shopping store with Facial Recognition Features for added Security</h2></b>
 
-Submission for Microsoft Engage 2022
+<b><h3>Submission for Microsoft Engage 2022</b></h3>
 
 <b>Description:</b> Sugar Town is an e-commerce dessert store in which you can order desserts online. It has login, add to cart, secure payment checkout, order history viewing  and once the order is placed you receive email notification about the order details and alert about the amount deducted from wallet. 
 
@@ -56,7 +56,7 @@ Face Recogntion library: Opencv
 
 
 
-<b>Instructions:</b>
+<b><h3>Instructions:</h3></b>
 
 1) git clone https://github.com/paarthsoni/microsoft_engage_sugartown.git
 2) cd sugartown
