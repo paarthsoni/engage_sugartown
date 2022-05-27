@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 from sugartown.settings import BASE_DIR
 from django.contrib import messages
-import face_recognition
+
 detector = cv2.CascadeClassifier(
     str(BASE_DIR)+'/sugartownapp/haarcascade_frontalface_default.xml')
 recognizer = cv2.face.LBPHFaceRecognizer_create()
