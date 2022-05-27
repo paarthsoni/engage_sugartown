@@ -11,11 +11,11 @@
 
 
 
-<b>Tech Stack:</b>
-Frontend: HTML5, CSS3, Javascript, Bootstrap
-Backend: Django, Python
-Database : Heroku Postgresql database
-Face Recogntion library: Opencv
+<b>Tech Stack:</b><br/>
+Frontend: HTML5, CSS3, Javascript, Bootstrap<br />
+Backend: Django, Python<br />
+Database : Heroku Postgresql database<br />
+Face Recogntion library: Opencv<br />
 
 
 <b>Features & Interfaces (Glimpses of Web Application):</b>
