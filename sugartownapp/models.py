@@ -10,6 +10,8 @@ from sqlalchemy import false
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
+#  user profile model
+
 
 class UserProfile(models.Model):
     username = models.CharField(max_length=1024, null=False,
@@ -27,6 +29,7 @@ class UserProfile(models.Model):
         return self.username
 
 
+#  model to store user face id
 class userfaceid(models.Model):
     id_face = models.AutoField(primary_key=True, default=0)
     username = models.CharField(
@@ -34,6 +37,8 @@ class userfaceid(models.Model):
 
     def __str__(self):
         return str(self.id_face)
+
+# model to store requirements for user
 
 
 class userrequirements(models.Model):
@@ -52,6 +57,7 @@ class userrequirements(models.Model):
         return self.name + " - "+self.username
 
 
+# model to store all the users who are subscribed for latest offers
 class latestoffers_user(models.Model):
     username = models.CharField(
         max_length=1024, null=False, unique=False, default="")
@@ -60,6 +66,8 @@ class latestoffers_user(models.Model):
 
     def __str__(self):
         return self.username + " - "+self.email
+
+# models to store the user input from the contact form
 
 
 class user_contactinfo(models.Model):
@@ -76,6 +84,7 @@ class user_contactinfo(models.Model):
         return self.name + " - "+self.email
 
 
+#  model to store users subscribed to news letter
 class newsletter_user(models.Model):
     username = models.CharField(
         max_length=1024, null=False, unique=False, default="")
@@ -86,6 +95,7 @@ class newsletter_user(models.Model):
         return self.username + " - "+self.email
 
 
+#  model to store the user cart details
 class user_cart(models.Model):
     username = models.CharField(
         max_length=1024, null=False, unique=False, default="")
@@ -99,6 +109,8 @@ class user_cart(models.Model):
     def __str__(self):
         return self.username
 
+#  model to store the discount_coupons
+
 
 class discount_coupons(models.Model):
     coupon_name = models.CharField(
@@ -110,6 +122,8 @@ class discount_coupons(models.Model):
 
     def __str__(self):
         return self.coupon_name
+
+#  model to store the cart value of user
 
 
 class user_cart_value(models.Model):
@@ -123,6 +137,7 @@ class user_cart_value(models.Model):
         return self.username
 
 
+#  model to store user wallet balance
 class user_wallet(models.Model):
     username = models.CharField(
         max_length=1024, null=False, unique=False, default="")
@@ -131,6 +146,8 @@ class user_wallet(models.Model):
     def __str__(self):
         return self.username
 
+
+# model to store the user order details
 
 class user_order(models.Model):
     username = models.CharField(
@@ -169,6 +186,7 @@ class user_order(models.Model):
         return self.username+" - "+self.fname+" "+self.lname
 
 
+#  model to store user order details products
 class userorderdetails(models.Model):
     username = models.CharField(
         max_length=1024, null=False, unique=False, default="")

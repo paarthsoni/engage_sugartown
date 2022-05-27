@@ -1,39 +1,34 @@
 from asyncio.windows_events import NULL
 from datetime import datetime
-from importlib.resources import read_text
 from os import path
 from re import I
-from tabnanny import check
-from tempfile import NamedTemporaryFile
-from urllib.request import urlopen
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, get_user, login, logout
 from django.contrib.auth.decorators import login_required
-from requests import ReadTimeout, get
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from sugartownapp.detection import FaceRecognition
 from sugartownapp.detection1 import FaceRecognition1
 from django.db.models import Sum
-
 from sugartownapp.models import UserProfile, userfaceid, userrequirements, latestoffers_user, user_contactinfo, newsletter_user, user_cart, discount_coupons, user_cart_value, user_wallet, user_order, userorderdetails
-
 import cv2
 from django.core.files import File
-
 from django.contrib.auth.hashers import check_password
+
+# calling face recognition class from detection.py files
 faceRecognition = FaceRecognition()
 faceRecognition1 = FaceRecognition1()
+
+# functions for calculating total cart cost and total cart in items
 
 
 def cartitem(request):
     username = get_user(request)
     total_cart_item = user_cart.objects.filter(username=username).aggregate(
         TOTAL=Sum('quantity'))['TOTAL']
-    # print(total_cart_item)
     if total_cart_item == None:
         total_cart_item = 0
     return total_cart_item
@@ -62,6 +57,7 @@ def changecost(request):
     return cost_change
 
 
+# functions for login, register and home page and logout
 def index(request):
     if request.user.is_authenticated:
         total_cart_item = cartitem(request)
@@ -178,6 +174,7 @@ def logoutUser(request):
     return redirect("/")
 
 
+# function to call the detection.py file for face recognition
 def addFace(request, username):
 
     user_username = username
@@ -187,6 +184,7 @@ def addFace(request, username):
     return redirect('/')
 
 
+# fucntions for user requirements, offers
 def userrequirements_data(request):
     if request.method == "POST":
         username = get_user(request)
@@ -238,6 +236,7 @@ def latestoffers_user_email_data(request):
     return render(request, 'index.html')
 
 
+# functions for about, contact, blog
 def about(request):
 
     if request.user.is_authenticated:
@@ -308,6 +307,7 @@ def blog(request):
         return render(request, 'blog.html')
 
 
+# functions for account, shop
 @login_required(login_url='/login/')
 def account(request):
     if request.user.is_authenticated:
@@ -336,6 +336,7 @@ def shop(request):
         return render(request, 'shop.html')
 
 
+#  functions for switching to different products page
 def shop_products(request):
     if request.method == "POST":
         type_product_value = request.POST.get('producttype')
@@ -402,6 +403,7 @@ def shop_products_icecreams(request):
         return render(request, 'shop-icecreams.html')
 
 
+# functions for shop cart functionality
 @login_required(login_url='/login/')
 def shop_cart(request):
     username = get_user(request)
@@ -427,6 +429,7 @@ def shop_cart(request):
     return render(request, 'shoping-cart.html', {'cart_detail': user_cart_items, 'total_cart_item': total_cart_item, 'discount_coupons': couponcode, 'total_cart_cost': total_cart_cost, 'wallet_balance': wallet_balance})
 
 
+# functions for adding products to cart
 @login_required(login_url='/login/')
 def cart_add(request, product_name, product_price):
     username = get_user(request)
@@ -515,6 +518,7 @@ def cart_add(request, product_name, product_price):
         return redirect('/shop/')
 
 
+#  functions for deleting items from cart
 @login_required(login_url='/login/')
 def delete_cart_item(request, product_name):
     username = get_user(request)
@@ -546,6 +550,8 @@ def delete_cart_item(request, product_name):
     messages.success(
         request, f'{product_name} removed successfully from cart!')
     return redirect('/cart')
+
+# functions for altering cart
 
 
 @login_required(login_url='/login/')
@@ -594,6 +600,8 @@ def alter_cart(request, product_name):
         return redirect('/cart')
     return render(request, 'shoping-cart.html')
 
+# functions for discount_coupon functionality
+
 
 @login_required(login_url='/login/')
 def discount_coupon(request):
@@ -641,6 +649,7 @@ def discount_coupon(request):
     return render(request, 'shoping-cart.html')
 
 
+# functions for payment checkout functionality
 @login_required(login_url='/login/')
 def checkout(request):
 
@@ -760,6 +769,7 @@ def checkout(request):
         return redirect('/shop/cart')
 
 
+# function for adding balance to wallet
 @login_required(login_url='/login/')
 def add_balance(request):
 

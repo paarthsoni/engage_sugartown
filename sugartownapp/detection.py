@@ -10,17 +10,6 @@ detector = cv2.CascadeClassifier(
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 
-# # Create a connection witn databse
-# conn = sqlite3.connect('db.sqlite3')
-# if conn != 0:
-#     print("Connection Successful")
-# else:
-#     print('Connection Failed')
-#     exit()
-
-# Creating table if it doesn't already exists
-# conn.execute('''create table if not exists facedata ( id int primary key, name char(20) not null)''')
-
 class FaceRecognition:
 
     def faceDetect(self, Entry1):
@@ -51,7 +40,7 @@ class FaceRecognition:
             k = cv2.waitKey(10) & 0xff  # Press 'ESC' for exiting video
             if k == 27:
                 break
-            elif count >= 10:  # Take 30 face sample and stop video
+            elif count >= 20:  # Take 30 face sample and stop video
                 break
 
         cam.release()

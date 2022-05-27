@@ -1,6 +1,6 @@
 from django.contrib import admin
 from sugartownapp.models import UserProfile, userfaceid, userrequirements, latestoffers_user, user_contactinfo, newsletter_user, user_cart, discount_coupons, user_cart_value, user_wallet, user_order, userorderdetails
-# # Register your models here.
+# # Register models to be shown on admin portal
 
 admin.site.register(UserProfile)
 admin.site.register(userfaceid)

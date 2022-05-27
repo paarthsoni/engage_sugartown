@@ -4,22 +4,11 @@ import numpy as np
 from PIL import Image
 from sugartown.settings import BASE_DIR
 from django.contrib import messages
-import face_recognition
+
 detector = cv2.CascadeClassifier(
     str(BASE_DIR)+'/sugartownapp/haarcascade_frontalface_default.xml')
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
-
-# # Create a connection witn databse
-# conn = sqlite3.connect('db.sqlite3')
-# if conn != 0:
-#     print("Connection Successful")
-# else:
-#     print('Connection Failed')
-#     exit()
-
-# Creating table if it doesn't already exists
-# conn.execute('''create table if not exists facedata ( id int primary key, name char(20) not null)''')
 
 class FaceRecognition1:
 
