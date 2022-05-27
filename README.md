@@ -1,6 +1,6 @@
- <b style="font-size: x-large;">SugarTown - An online dessert Shopping store with Facial Recognition Features for added Security</b>
+ <b><h2>SugarTown - An online dessert Shopping store with Facial Recognition Features for added Security</h2></b>
 
-Submission for Microsoft Engage 2022
+<b><h3>Submission for Microsoft Engage 2022</b></h3>
 
 <b>Description:</b> Sugar Town is an e-commerce dessert store in which you can order desserts online. It has login, add to cart, secure payment checkout, order history viewing  and once the order is placed you receive email notification about the order details and alert about the amount deducted from wallet. 
 
@@ -11,11 +11,11 @@ Submission for Microsoft Engage 2022
 
 
 
-<b>Tech Stack:</b>
-Frontend: HTML5, CSS3, Javascript, Bootstrap
-Backend: Django, Python
-Database : Heroku Postgresql database
-Face Recogntion library: Opencv
+<b>Tech Stack:</b><br/>
+Frontend: HTML5, CSS3, Javascript, Bootstrap<br />
+Backend: Django, Python<br />
+Database : Heroku Postgresql database<br />
+Face Recogntion library: Opencv<br />
 
 
 <b>Features & Interfaces (Glimpses of Web Application):</b>
@@ -47,9 +47,16 @@ Face Recogntion library: Opencv
 
 ![image](https://user-images.githubusercontent.com/71220869/170701613-0af58d2d-5d8f-45cd-9bdf-d52fb45b38ff.png)
 
+8) Email Notifications after Placing Order:
+
+![image](https://user-images.githubusercontent.com/71220869/170705543-fc159788-8bae-47bf-8d75-df4c81aeede5.png)
 
 
-<b>Instructions:</b>
+![image](https://user-images.githubusercontent.com/71220869/170705632-8494874f-b26a-4c31-bb87-42277f28c8e3.png)
+
+
+
+<b><h3>Instructions:</h3></b>
 
 1) git clone https://github.com/paarthsoni/microsoft_engage_sugartown.git
 2) cd sugartown
@@ -59,7 +66,7 @@ Face Recogntion library: Opencv
     pip install numpy <br />
     pip install psyopg2 <br />
         
-
+<h3><b>Note: </h3></b> It may take 2 to 3 seconds more to perform operations related to database as the database attached is a free version of heroku-postgresql
 
 
 
