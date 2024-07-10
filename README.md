@@ -56,9 +56,9 @@ Face Recogntion library: Opencv<br />
 
 
 
-<b><h3>Application Demo Video:</h3></b>
+<b><h3>Application Demo Video:</h3></b> <a href="https://www.youtube.com/watch?v=sQ-Oh5dcSsM">Click here</a>
 
-<a href="https://www.youtube.com/watch?v=sQ-Oh5dcSsM">Click here</a>
+
 
 
 
