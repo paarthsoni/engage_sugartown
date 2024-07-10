@@ -56,20 +56,9 @@ Face Recogntion library: Opencv<br />
 
 
 
-<b><h3>Instructions:</h3></b>
+<b><h3>Application Demo Video:</h3></b>
 
-1) git clone https://github.com/paarthsoni/microsoft_engage_sugartown.git
-2) cd sugartown
-3) Installing Dependencies:<br />
-    pip install pillow <br />
-    pip install cv2      
-    pip install numpy <br />
-    pip install psyopg2 <br />
-    pip install opencv-contrib-python <br />
-    
-4) To run the application: run the command <b>python manage.py runserver</b>
-        
-<h3><b>Note: </h3></b> It may take 2 to 3 seconds more to perform operations related to database as the database attached is a free version of heroku-postgresql
+<a href="https://www.youtube.com/watch?v=sQ-Oh5dcSsM">Click here</a>
 
 
 
